@@ -8,20 +8,27 @@
 #endif //ANALYSIS_MAIN_H
 #include "iostream"
 #include "cstring"
+#include <sstream>
 #define MASTER 1
 #define END 16
 using namespace std;
 class ToRedis{
 public:
     //增
-    string insert(string key,string value);
+    char* insert(char* key,string value);
 
-    string update(string key,string value);
+    char* update(string key,string value);
 
-    string deleter(string key,string value);
+    char* deleter(char* key);
 
-    string select(string key,string value);
-//查
-//增表
-//删表
+    //string select(string key,string value);
+
+private:
+    string tos(int num){
+        stringstream ss;
+        string str;
+        ss<<num;
+        ss>>str;
+        return str;
+    }
 };
