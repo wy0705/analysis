@@ -15,11 +15,11 @@ using namespace std;
 class ToRedis{
 public:
     //增
-    char* insert(char* key,string value);
+    char* insert(char* str);
 
     char* update(string key,string value);
 
-    char* deleter(char* key);
+    char* deleter(char* str);
 
     //string select(string key,string value);
 
