@@ -31,4 +31,10 @@ private:
         ss>>str;
         return str;
     }
+    char* jonit(char *firstname,char *lastname){
+        char *name = (char *) malloc(strlen(firstname) + strlen(lastname));
+        strcpy(name, firstname);
+        strcat(name, lastname);
+        return name;
+    }
 };

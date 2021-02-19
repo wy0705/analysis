@@ -49,17 +49,44 @@ char* ToRedis::insert(char str[]){
     {
         cout<<p2<<endl;
         //p2 = strtok(NULL,split);
+        char *firstName ="*3\r\n$3\r\nset\r\n$";
+        char *r="\r\n";
         string p3=p2;
-        string size=tos(p3.size());
-
+        //string size=tos(p3.size());
+        char *size;
+        switch (p3.size()) {
+            case 1: size="1";
+            case 2: size="2";
+            case 3: size="3";
+            case 4: size="4";
+            case 5: size="5";
+            case 6: size="6";
+            case 7: size="7";
+            case 8: size="8";
+        }
+//    char *firstName = "Theo";
+//    char *lastName = "Tsao";
+//    char *name = (char *) malloc(strlen(firstName) + strlen(lastName));
+//    strcpy(name, firstName);
+//    strcat(name, lastName);
+//    printf("%s\n", name);
         if (iskey== true){
-
-            *toredis+"*3\r\n$3\r\nset\r\n$"+size+"\r\n"+p2+"\r\n$";
+            char *lastName =jonit(firstName,size);
+            char *lastName1=jonit(lastName,r);
+            char *lastName2=jonit(lastName1,p2);
+            char *r1="\r\n$";
+            toredis=jonit(lastName2,r1);
+            //*toredis+"*3\r\n$3\r\nset\r\n$"+size+"\r\n"+p2+"\r\n$";
             cout<<1<<endl;
             cout<<toredis<<endl;
             iskey= false;
         } else{
-            *toredis+size+"\r\n"+p3+"\r\n,";
+            char *lastName =jonit(toredis,size);
+            char *lastName1=jonit(lastName,r);
+            char *lastName2=jonit(lastName1,p2);
+            char *r1="\r\n,";
+            toredis=jonit(lastName2,r1);
+            //*toredis+size+"\r\n"+p3+"\r\n,";
             cout<<2<<endl;
             cout<<toredis<<endl;
             iskey=true;
@@ -69,11 +96,73 @@ char* ToRedis::insert(char str[]){
 
     return toredis;
 }
-char* ToRedis::deleter(char* key) {
+char* ToRedis::deleter(char key[]) {
     char* toredis="*2\r\n$3\r\ndel\r\n$";
+    char* r="\r\n";
     string key_=key;
-    string keysize=tos(key_.size());
-    *toredis+keysize+"\r\n"+key_+"\r\n";
+    char *size;
+    switch (key_.size()) {
+        case 1: size="1";
+        case 2: size="2";
+        case 3: size="3";
+        case 4: size="4";
+        case 5: size="5";
+        case 6: size="6";
+        case 7: size="7";
+        case 8: size="8";
+    }
+    toredis=jonit(toredis,size);
+    toredis=jonit(toredis,r);
+    toredis=jonit(toredis,key);
+    char* r1="\r\n,";
+    toredis=jonit(toredis,r1);
+    //*toredis+size+"\r\n"+key_+"\r\n";
+    const char *split = ",;";
+    char *p2 = strtok(str,split);
+    while( p2 != NULL )
+    {
+        cout<<p2<<endl;
+        //p2 = strtok(NULL,split);
+        char *firstName ="*3\r\n$3\r\nset\r\n$";
+        char *r="\r\n";
+        string p3=p2;
+        //string size=tos(p3.size());
+        char *size;
+        switch (p3.size()) {
+            case 1: size="1";
+            case 2: size="2";
+            case 3: size="3";
+            case 4: size="4";
+            case 5: size="5";
+            case 6: size="6";
+            case 7: size="7";
+            case 8: size="8";
+        }
+
+        if (iskey== true){
+            char *lastName =jonit(firstName,size);
+            char *lastName1=jonit(lastName,r);
+            char *lastName2=jonit(lastName1,p2);
+            char *r1="\r\n$";
+            toredis=jonit(lastName2,r1);
+            //*toredis+"*3\r\n$3\r\nset\r\n$"+size+"\r\n"+p2+"\r\n$";
+            cout<<1<<endl;
+            cout<<toredis<<endl;
+            iskey= false;
+        } else{
+            char *lastName =jonit(toredis,size);
+            char *lastName1=jonit(lastName,r);
+            char *lastName2=jonit(lastName1,p2);
+            char *r1="\r\n,";
+            toredis=jonit(lastName2,r1);
+            //*toredis+size+"\r\n"+p3+"\r\n,";
+            cout<<2<<endl;
+            cout<<toredis<<endl;
+            iskey=true;
+        }
+        p2 = strtok(NULL,split);
+    }
+
     return toredis;
 }
 
