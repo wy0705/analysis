@@ -112,13 +112,21 @@ void updateServerByKey(char* serverName)//服务保护和检查机制
 
 void deleteServerByKey(char* serverName)//服务停止时删除
 {
-    struct member infor,*p;
+    struct member infor[MAX],*p;
     FILE *fp;
+    int i=0;
     fp=fopen("infor.txt","rb");
     if (fp==NULL)
     {
         printf("\nCan't open the file");
         exit(1);
+    }
+    while (1)
+    {
+        fread(&infor[i],sizeof(struct member),1,fp);
+        if (infor[i].serverName==serverName){
+
+        }
     }
 }
 int main() {
