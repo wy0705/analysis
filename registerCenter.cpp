@@ -107,6 +107,31 @@ void registers(char *serverName,char *addr){
 
 void updateServerByKey(char* serverName)//服务保护和检查机制
 {
+    FILE *fp;
+    int i=0,count=0;
+    struct member infor[50];
+    fp=fopen("infor.txt","rb");
+    if (fp==NULL)
+    {
+        printf("\nCan't open the file");
+        exit(1);
+    }
+    while (1){
+        if (feof(fp))
+        {
+            printf("Have listed all information!\n");//显示所有会员信息
+            break;
+        }
+        fread(&infor[i],sizeof(struct member),1,fp);
+        i++;
+        count+=1;
+    }
+    fclose(fp);
+    for (int j = 0; j < count; ++j) {
+        if (strcmp(infor[i].serverName,serverName)==0){
+
+        }
+    }
 
 }
 
@@ -121,14 +146,19 @@ void deleteServerByKey(char* serverName)//服务停止时删除
         printf("\nCan't open the file");
         exit(1);
     }
-    while (1)
+    //记录servername的位置 i
+    /*while (1)
     {
         fread(&infor[i],sizeof(struct member),1,fp);
-        if (infor[i].serverName==serverName){
-
+        if (strcmp(infor[i].serverName,serverName)){
+            fwrite(&infor[i],sizeof(struct member),1,fp);
+            fclose(fp);
+            break;
         }
-    }
+    }*/
 }
+
+
 int main() {
 
     return 0;
