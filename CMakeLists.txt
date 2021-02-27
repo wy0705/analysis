@@ -3,4 +3,4 @@ project(analysis)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(analysis main.cpp main.h registerCenter.cpp registerCenter.h)
+add_executable(analysis main.cpp main.h registerCenter.cpp registerCenter.h keepAlive.cpp keepAlive.h)
